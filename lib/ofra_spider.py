@@ -10,4 +10,5 @@ class BlogSpider(scrapy.Spider):
             song_title = song.css('::text').get()
             yield {'title': song_title.replace('\t','')}
 
-        
+        for next_page in response.xpath("//a[contains(text(), 'הבא') ]"):
+            yield response.follow(next_page, self.parse)
