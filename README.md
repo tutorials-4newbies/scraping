@@ -14,4 +14,5 @@ git checkout v1  #v1 -> v3
 
 ## Work in small groups:
 
-Use the song list the yield the title, music writer and song text
+* Use the song list the yield the title, music writer and song text for all popular songs
+* Process the results and create a top words by songs, top music writer statistcs
