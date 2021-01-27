@@ -1,21 +1,17 @@
 import scrapy
+from scrapy.spiders import Rule
+from scrapy.linkextractors import LinkExtractor
 
-
-class SongsSpider(scrapy.Spider):
+class SongsSpider(scrapy.spiders.CrawlSpider):
     name = 'songs'
     allowed_domains = ['shironet.mako.co.il']
     start_urls = ['https://shironet.mako.co.il/artist?type=works&lang=1&prfid=820&class=4&sort=popular']
+    rules = [
+        Rule(LinkExtractor(restrict_xpaths=("//a[contains(text(), 'הבא') ]"))),
+        Rule(LinkExtractor(allow=("type=lyrics")),callback='parse_song'),
 
-    def parse(self, response):
-        for song in response.css('.artist_player_songlist'):
-            song_title = song.css('::text').get()
-            song_link = song.xpath(f"//a[contains(text(), '{song_title}' )]")[0]
+    ]
 
-            yield response.follow(song_link, self.parse_song)
-
-        for next_page in response.xpath("//a[contains(text(), 'הבא') ]"):
-            # print(next_page)
-            yield response.follow(next_page, self.parse)
 
     def parse_song(self, response):
 
