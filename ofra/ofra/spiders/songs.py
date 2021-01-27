@@ -1,0 +1,15 @@
+import scrapy
+
+
+class SongsSpider(scrapy.Spider):
+    name = 'songs'
+    allowed_domains = ['shironet.mako.co.il']
+    start_urls = ['https://shironet.mako.co.il/artist?type=works&lang=1&prfid=820&class=4&sort=popular']
+
+    def parse(self, response):
+        for song in response.css('.artist_player_songlist'):
+            song_title = song.css('::text').get()
+            yield {'title': song_title.replace('\t', '')}
+
+        for next_page in response.xpath("//a[contains(text(), 'הבא') ]"):
+            yield response.follow(next_page, self.parse)
