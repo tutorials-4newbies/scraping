@@ -12,7 +12,6 @@ class SongsSpider(scrapy.spiders.CrawlSpider):
 
     ]
 
-
     def parse_song(self, response):
 
         song_title = response.css('h1.artist_song_name_txt::text').get()
