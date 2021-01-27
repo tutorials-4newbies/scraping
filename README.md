@@ -43,7 +43,7 @@ scrapy genspider songs https://shironet.mako.co.il/artist\?render\=true\&type\=w
 ## Tags
 
 ```bash
-git checkout v1  #v1 -> v3
+git checkout v1  #v1 -> v7
 
 ```
 
