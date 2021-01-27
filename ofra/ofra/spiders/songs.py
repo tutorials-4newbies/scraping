@@ -20,6 +20,7 @@ class SongsSpider(scrapy.Spider):
     def parse_song(self, response):
 
         song_title = response.css('h1.artist_song_name_txt::text').get()
-        song_lyrics = response.css('.artist_lyrics_text::text').get()
+        song_lyrics_list = response.css('.artist_lyrics_text::text').getall()
+        song_lyrics = ' '.join(song_lyrics_list)
 
         yield {'title': song_title, 'lyrics': song_lyrics}
