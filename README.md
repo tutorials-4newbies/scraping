@@ -21,7 +21,20 @@ After that
 ```bash
 pip install -r requirements.txt
 ```
+## Run
 
+```bash
+# Run basic spider
+scrapy runspider lib/ofra_spider.py
+```
+
+```bash
+# Create a project
+scrapy startproject ofra
+# Create a spider in a project
+scrapy genspider songs https://shironet.mako.co.il/artist\?render\=true\&type\=works\&lang\=1\&prfid\=820\&class\=4\&sort\=popular\&page\=1
+
+```
 ## Learn more
 
 * [scrapy into tutorial](https://docs.scrapy.org/en/latest/intro/tutorial.html)
