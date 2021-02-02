@@ -7,20 +7,21 @@ linux
 
 python -m venv venv
 source venv/bin/activate
-
+pip install -r requirements.txt
 ```
 
 windows
 
 ```
+# `pipwin` helps us install pre-compiled C-extensioned packages on windows without having our own build toolchain
+# `twisted` is such package, we need it for because one of our requirements is depended on it
 python -m venv venv
 venv\Scripts\activate.bat
-```
-
-After that
-```bash
+pip install pipwin
+pipwin install twisted
 pip install -r requirements.txt
 ```
+
 ## Run
 
 ```bash
